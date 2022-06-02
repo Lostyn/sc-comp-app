@@ -1,0 +1,21 @@
+.button {
+	display: block;
+	width: fit-content;
+	height: fit-content;
+	cursor: pointer;
+	color: white;
+	border-radius: 4px;
+
+	&.text-button {
+		border: 1px solid #cacaca;
+		padding: 4px 8px;
+	}
+
+	&.icon-button {
+		padding: 8px;
+
+		&:hover {
+			background-color: #151719;
+		}
+	}
+}

@@ -1,0 +1,32 @@
+.selector {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 50%;
+	max-width: 70%;
+    min-height: 50%;
+    background: #151719;
+    padding: 10px;
+    overflow: hidden;
+
+	& .options {
+		display: flex;
+		color: white;
+		gap: 10px;
+		margin-bottom: 10px;
+		justify-content: center;
+
+		& .tab {
+			&.active {
+				border-bottom: 2px solid #ee7658;
+			}
+		}
+	}
+
+	& .content {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+}

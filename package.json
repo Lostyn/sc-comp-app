@@ -1,0 +1,29 @@
+{
+  "name": "screener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main",
+  "scripts": {
+    "dev": "gulp dev --color",
+    "build": "gulp build --color"
+  },
+  "author": "Lostyn",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/gulp": "^4.0.9",
+    "electron": "^16.0.7",
+    "electron-builder": "^22.14.13",
+    "electron-connect": "^0.6.3",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-dart-sass": "^1.0.2",
+    "gulp-inject-string": "^1.1.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "fs-jetpack": "^4.3.1"
+  }
+}

@@ -1,0 +1,26 @@
+.preview {
+	border: 1px solid white;
+    width: 31.3%;
+    height: auto;
+    padding: 5px;
+    cursor: pointer;
+    margin: 1%;
+	text-align: center;
+
+	&:hover {
+		background-color: #505050;
+	}
+
+	& .name {
+		color: white;
+		margin-bottom: 5px;
+		text-overflow: ellipsis;
+		width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	& img {
+		width: 80%;
+	}
+}
