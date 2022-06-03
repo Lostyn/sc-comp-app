@@ -1,6 +1,6 @@
-import { dialog, ipcMain, OpenDialogSyncOptions, SaveDialogOptions } from 'electron';
-import { ProxyService } from '../../commun/ipc/proxy';
-import { createDecorator } from '../../commun/decorators';
+import { dialog, OpenDialogSyncOptions } from 'electron';
+import { createDecorator } from '../../commun/services/decorators';
+import { ProxyService } from '../../commun/services/proxy';
 import { OpenDialogOptions } from '../../types/services/dialog';
 
 export interface IDialogService {

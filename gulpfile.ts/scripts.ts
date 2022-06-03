@@ -4,22 +4,10 @@ import paths from './gulp.path';
 
 var tsProject = ts.createProject('tsconfig.json');
 
-class Scripts {
-    scope: string;
-
-    constructor(scope: string) {
-        this.scope = scope;
-    }
-
-    compile = () => {
-        return gulp.src(paths.input.scripts[this.scope])
-            .pipe(tsProject())
-            .pipe(gulp.dest(paths.output.script[this.scope]));
-    }
+function scripts() {
+    return gulp.src(paths.input.scripts)
+        .pipe(tsProject())
+        .pipe(gulp.dest(paths.output.scripts));
 }
 
-export default {
-    main: new Scripts('main'),
-    renderer: new Scripts('renderer'),
-    commun: new Scripts('commun')
-}
+export default scripts;

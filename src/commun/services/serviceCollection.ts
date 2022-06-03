@@ -1,5 +1,5 @@
-import { ServiceIdentifier } from '../interfaces/services/instantiation';
 import { SyncDescriptor } from './descriptors';
+import { ServiceIdentifier } from './services';
 
 export class ServiceCollection {
 	private _entries = new Map<ServiceIdentifier<any>, any>();

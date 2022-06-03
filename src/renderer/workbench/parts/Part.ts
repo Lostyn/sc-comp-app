@@ -1,18 +1,19 @@
-import { ILayoutService } from '../../interfaces/services/layout';
+import { ILayoutService } from '../../services/layout/layout';
+
+export interface ContentAreaPartOption {
+	context?: HTMLElement
+}
 
 export abstract class Part {
 
 	private parent: HTMLElement | undefined;
-	private titleArea: HTMLElement | undefined;
 	private contentArea: HTMLElement | undefined;
 
 	element!: HTMLElement;
 
 	constructor(
-		private readonly id: string,
-		layoutService: ILayoutService
+		private readonly id: string
 	) {
-		layoutService.registerPart(this);
 	}
 
 	getId(): string { return this.id; }
@@ -23,10 +24,9 @@ export abstract class Part {
 	 *
 	 * Called to create title and content area of the part.
 	 */
-	create(parent: HTMLElement): void {
+	create(parent: HTMLElement, options?: ContentAreaPartOption): void {
 		this.parent = parent;
-		this.titleArea = this.createTitleArea(parent);
-		this.contentArea = this.createContentArea(parent);
+		this.contentArea = this.createContentArea(parent, options);
 	}
 
 	/**
@@ -41,13 +41,6 @@ export abstract class Part {
 	 */
 	protected createTitleArea(parent: HTMLElement): HTMLElement | undefined {
 		return undefined;
-	}
-
-	/**
-	 * Returns the title area container.
-	 */
-	protected getTitleArea(): HTMLElement | undefined {
-		return this.titleArea;
 	}
 
 	/**

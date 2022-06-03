@@ -1,6 +1,6 @@
-import { ServiceIdentifier } from '../interfaces/services/instantiation';
-import { IService } from '../interfaces/services/services';
+
 import { SyncDescriptor } from './descriptors';
+import { IService, ServiceIdentifier } from './services';
 
 const _registry: [ServiceIdentifier<any>, SyncDescriptor<any>][] = [];
 

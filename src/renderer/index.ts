@@ -1,9 +1,9 @@
-import { ProxyService } from '../commun/ipc/proxy';
+import { ProxyService } from '../commun/services/proxy';
+import { ServiceCollection } from '../commun/services/serviceCollection';
 import DialogService, { IDialogService } from '../main/services/dialogService';
 import MainCaptureService, { IMainCaptureService } from '../main/services/mainCaptureService';
 import MainWindowService, { IMainWindowService } from '../main/services/windowService';
 import { domContentLoaded } from './base/core/dom';
-import { ServiceCollection } from './services/serviceCollection';
 import Workbench from './workbench/workbench';
 
 class DesktopMain {
@@ -23,6 +23,7 @@ class DesktopMain {
 	private async initServices(): Promise<{ serviceCollection: ServiceCollection }> {
 		const serviceCollection = new ServiceCollection();
 
+		// Service from main process
 		const mainWindowService = ProxyService.fromMainService<IMainWindowService>(MainWindowService.channel);
 		serviceCollection.set(IMainWindowService, mainWindowService);
 

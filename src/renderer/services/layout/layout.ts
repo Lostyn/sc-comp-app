@@ -1,9 +1,18 @@
-import { ILayoutService } from '../interfaces/services/layout';
-import { Part } from './parts/Part';
+import { createDecorator } from '../../../commun/services/decorators';
+import { IService } from '../../../commun/services/services';
+import { Part } from '../../workbench/parts/Part';
+
+export const ILayoutService = createDecorator<ILayoutService>('layoutService');
+export interface ILayoutService extends IService {
+
+	registerPart(part: Part): void;
+	getPart(key: Parts): Part;
+}
 
 export enum Parts {
 	TITLEBAR_PART = 'workbench.parts.titlebar',
-	PLAYER_PART = 'workbench.parts.player'
+	PLAYER_PART = 'workbench.parts.player',
+	INSPECTOR_PART = 'workbench.parts.inspector'
 }
 
 export abstract class Layout implements ILayoutService {

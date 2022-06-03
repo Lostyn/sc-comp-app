@@ -1,10 +1,10 @@
 import { ipcRenderer } from 'electron';
 import { Callback } from '../../base/core/event';
-import { IService } from '../../interfaces/services/services';
-import { createDecorator } from '../../../commun/decorators';
 import * as IPC from '../../../main/contansts/ipc';
-import { registerSingleton } from '../registry';
 import { Map } from '../../../types/type';
+import { createDecorator } from '../../../commun/services/decorators';
+import { IService } from '../../../commun/services/services';
+import { registerSingleton } from '../../../commun/services/registry';
 
 export const IShortcutService = createDecorator<IShortcutService>('shortcutService');
 export interface IShortcutService extends IService {

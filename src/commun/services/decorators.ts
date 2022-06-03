@@ -1,5 +1,5 @@
-import { ServiceIdentifier } from '../renderer/interfaces/services/instantiation';
-import { _util } from '../renderer/services/instantiation/instantiation';
+import { _util } from './instantiation';
+import { ServiceIdentifier } from './services';
 
 function storeServiceDependency(id: Function, target: Function, index: number) {
 	if ((target as any)[_util.DI_TARGET] === target) {

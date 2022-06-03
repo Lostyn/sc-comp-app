@@ -1,7 +1,7 @@
-import { IService } from '../../interfaces/services/services';
-import { createDecorator } from '../../../commun/decorators';
-import { registerSingleton } from '../registry';
-import { createReducer, Reducer, _reduce } from './createReducer';
+import { createDecorator } from '../../../commun/services/decorators';
+import { registerSingleton } from '../../../commun/services/registry';
+import { IService } from '../../../commun/services/services';
+import { _reduce } from './createReducer';
 
 export const IStateService = createDecorator<IStateService<any>>('stateService');
 export interface IStateService<T> extends IService {

@@ -1,6 +1,6 @@
 import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
-import { ProxyService } from '../../commun/ipc/proxy';
-import { createDecorator } from '../../commun/decorators';
+import { createDecorator } from '../../commun/services/decorators';
+import { ProxyService } from '../../commun/services/proxy';
 import createWindow from '../windows';
 
 export interface IMainWindowService {

@@ -7,15 +7,16 @@
 	border-radius: 4px;
 
 	&.text-button {
-		border: 1px solid #cacaca;
+		background-color: #524f48;
 		padding: 4px 8px;
+
 	}
 
 	&.icon-button {
 		padding: 8px;
+	}
 
-		&:hover {
-			background-color: #151719;
-		}
+	&:hover {
+		background-color: #151719;
 	}
 }

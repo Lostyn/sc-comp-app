@@ -1,4 +1,4 @@
-import { ServiceIdentifier } from '../../interfaces/services/instantiation';
+import { ServiceIdentifier } from './services';
 
 export namespace _util {
 	export const serviceIds = new Map<string, ServiceIdentifier<any>>();

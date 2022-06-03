@@ -1,14 +1,23 @@
-import { IInstantiationService, ServiceIdentifier, ServicesAccessor } from '../../interfaces/services/instantiation';
-import { SyncDescriptor } from '../descriptors';
-import { Graph } from '../graph';
-import { ServiceCollection } from '../serviceCollection';
-import { _util } from './instantiation';
+import { createDecorator } from '../../../commun/services/decorators';
+import { SyncDescriptor } from '../../../commun/services/descriptors';
+import { Graph } from '../../../commun/services/graph';
+import { _util } from '../../../commun/services/instantiation';
+import { ServiceCollection } from '../../../commun/services/serviceCollection';
+import { IService, ServiceIdentifier, ServicesAccessor } from '../../../commun/services/services';
+
 
 class CyclicDependencyError extends Error {
 	constructor(graph: Graph<any>) {
 		super('cyclic dependency between services');
 		this.message = graph.findCycleSlow() ?? `UNABLE to detect cycle, dumping graph: \n${graph.toString()}`;
 	}
+}
+
+export const IInstantiationService = createDecorator<IInstantiationService>('instantiationService');
+export interface IInstantiationService extends IService {
+	invokeFunction<R, TS extends any[] = []>(fn: (accessor: ServicesAccessor, ...args: TS) => R, ...args: TS): R;
+
+	createInstance<Ctor extends new (...args: any[]) => any>(t: Ctor, ...args: any[]): any;
 }
 
 export class InstantiationService implements IInstantiationService {
@@ -79,7 +88,7 @@ export class InstantiationService implements IInstantiationService {
 	}
 
 	private _getServiceInstanceOrDescriptor<T>(id: ServiceIdentifier<T>): T | SyncDescriptor<T> {
-		let instanceOrDesc = this._services.get(id);
+		let instanceOrDesc = this._services.get<T>(id);
 		return instanceOrDesc;
 	}
 

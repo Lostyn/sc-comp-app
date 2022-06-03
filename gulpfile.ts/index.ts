@@ -24,9 +24,7 @@ function set(nodeEnv: string) {
 const prepare = gulp.series(
   clean,
   template,
-  scripts.main.compile,
-  scripts.renderer.compile,
-  scripts.commun.compile,
+  scripts,
   styles
 )
 

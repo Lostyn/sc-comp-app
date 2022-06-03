@@ -10,7 +10,7 @@ const electronServer = electronConnect.server.create({
     stopOnClose: true
 })
 let onDone;
-const callback = function(electronProcState) {
+const callback = function (electronProcState) {
     console.log('electron process state: ' + electronProcState);
     if (electronProcState == 'stopped') {
         onDone();
@@ -32,11 +32,12 @@ export default function electron(done) {
     onDone = done;
     electronServer.start(callback);
 
-    gulp.watch(paths.input.scripts.main, gulp.series(scripts.main.compile, restart));
+    gulp.watch(paths.input.mainScripts, gulp.series(scripts, restart));
+    gulp.watch(paths.input.communScripts, gulp.series(scripts, restart));
 
     gulp.watch(paths.input.html, gulp.series(template, reload));
     gulp.watch(paths.input.styles, gulp.series(styles, reload));
-    gulp.watch(paths.input.scripts.renderer, gulp.series(scripts.renderer.compile, reload));
+    gulp.watch(paths.input.rendererScripts, gulp.series(scripts, reload));
 
     return onDone;
 }

@@ -1,9 +1,7 @@
 import { IMainWindowService } from '../../../../main/services/windowService';
 import { $, prepend, append, activeClass } from '../../../base/core/dom';
 import { EventType } from '../../../base/core/event';
-import { ILayoutService } from '../../../interfaces/services/layout';
-import { IStateService } from '../../../services/state/stateService';
-import { Parts } from '../../layout';
+import { ILayoutService, Parts } from '../../../services/layout/layout';
 import { Part } from '../Part';
 
 export default class TitlebarPart extends Part {
@@ -18,7 +16,7 @@ export default class TitlebarPart extends Part {
 		@ILayoutService layoutService: ILayoutService,
 		@IMainWindowService private readonly mainWindowService: IMainWindowService
 	) {
-		super(Parts.TITLEBAR_PART, layoutService);
+		super(Parts.TITLEBAR_PART);
 	}
 
 	override createContentArea(parent: HTMLElement, options?: object): HTMLElement {

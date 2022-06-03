@@ -8,14 +8,17 @@ export interface IPath {
         html: string,
         styles: string,
         fonts: string,
-        scripts: { [key: string]: string },
+        scripts: string,
+        mainScripts: string,
+        rendererScripts: string,
+        communScripts: string
     },
     output: {
         baseDir: string,
         html: string,
         style: string,
         fonts: string,
-        script: { [key: string]: string },
+        scripts: string,
         release: string,
     }
 }
@@ -25,22 +28,17 @@ const paths: IPath = {
         html: 'src/renderer/index.html',
         styles: `src/${style}`,
         fonts: `src/renderer/res/fonts/${font}`,
-        scripts: {
-            main: `src/main/${script}`,
-            renderer: `src/renderer/${script}`,
-            commun: `src/commun/${script}`
-        }
+        scripts: `src/${script}`,
+        mainScripts: `src/main/${script}`,
+        rendererScripts: `src/renderer/${script}`,
+        communScripts: `src/commun/${script}`,
     },
     output: {
         baseDir: "./dist",
         html: 'dist/renderer',
         style: 'index.css',
         fonts: 'dist/renderer/fonts',
-        script: {
-            main: 'dist/main',
-            renderer: 'dist/renderer',
-            commun: 'dist/commun'
-        },
+        scripts: 'dist',
         release: 'release'
     }
 }
