@@ -11,14 +11,16 @@
 
 	& .inspector {
 		left: 0;
-		top: 30px;
-		width: 20%;
+		top: 70%;
+		width: 50%;
+		height: 50%;
 	}
 
 	& .player {
 		right: 0;
 		top: 30px;
-		width: 80%;
+		width: 100%;
+		height: calc(70% - 30px);
 	}
 
 

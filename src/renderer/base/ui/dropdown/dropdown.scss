@@ -1,0 +1,45 @@
+.dropdown {
+	margin: 2px 4px;
+	padding: 2px 4px;
+	position: relative;
+	width: fit-content;
+	color: white;
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+	cursor: pointer;
+	font-size: 12px;
+
+	&:hover {
+		border-radius: 2px;
+		background-color: #151719;
+	}
+
+	& span.icon-arrow-down {
+		margin-left: 10px;
+	}
+
+	.options {
+		position: absolute;
+		left: 0;
+		top: 100%;
+		display: none;
+		width: 100%;
+		color: #cccccc;
+		background-color: rgb(32, 33, 32);
+
+		& .choice {
+			padding: 2px 5px;
+			&:hover {
+				background-color: rgba(90, 93, 94, 0.31)
+			}
+		}
+	}
+
+	&.open {
+
+		& .options {
+			display: block;
+		}
+	}
+}

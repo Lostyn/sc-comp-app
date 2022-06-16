@@ -1,13 +1,13 @@
 @font-face {
-	font-family: 'gratticon';
+	font-family: 'icon';
 	font-style: normal;
 	font-weight: normal;
 	font-display: block;
-	src: url("./fonts/gratticon.ttf") format("truetype");
+	src: url("./fonts/icomoon.ttf") format("truetype");
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'gratticon' !important;
+	font-family: 'icon' !important;
 	speak: never;
 
 	/* Better Font Rendering =========== */
@@ -21,3 +21,4 @@
 .icon-play:before {		content: "\e903"; }
 .icon-resume:before {	content: "\e904"; }
 .icon-start:before {	content: "\e905"; }
+.icon-arrow-down:before {	content: "\e908"; }

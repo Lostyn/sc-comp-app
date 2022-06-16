@@ -2,19 +2,19 @@ import { IMainCaptureService } from '../../../../main/services/mainCaptureServic
 import { $, append } from '../../../base/core/dom';
 import { Button } from '../../../base/ui/button/button';
 import Source from '../../../internal/source';
-import { IInspectorService, IInspectorView } from '../../../services/inspector/inspectorService';
+import { IProcessingService, IProcessingView } from '../../../services/processor/processorService';
 import { Parts } from '../../../services/layout/layout';
 import SourcePreview from '../../components/sourcePreview/sourcePreview';
 import SourceSelector from '../../components/sourceSelector/sourceSelector';
 import { ContentAreaPartOption, Part } from '../Part';
 import SourceView from '../../components/sourceView/sourceView';
 
-export default class InspectorPart extends Part implements IInspectorView {
+export default class InspectorPart extends Part implements IProcessingView {
 	private _sourceSelector: SourceSelector;
 	private _sources: SourceView[];
 
 	constructor(
-		@IInspectorService private readonly inspectorService: IInspectorService,
+		@IProcessingService private readonly inspectorService: IProcessingService,
 		@IMainCaptureService private readonly captureService: IMainCaptureService
 	) {
 		super(Parts.INSPECTOR_PART);
@@ -63,5 +63,9 @@ export default class InspectorPart extends Part implements IInspectorView {
 		items.forEach(item => {
 			this._sources.push(new SourceView(this.element, item));
 		})
+	}
+
+	sizeDidChange(size) {
+
 	}
 }

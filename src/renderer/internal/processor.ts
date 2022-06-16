@@ -1,9 +1,11 @@
+import Point from '../../commun/math/Point';
 import { $ } from '../base/core/dom';
-import { IInspectorService, IInspectorView } from '../services/inspector/inspectorService';
+import { EventHelper, EventType } from '../base/core/event';
+import { IProcessingService, IProcessingView } from '../services/processor/processorService';
 import Source from './source';
 import source from './source';
 
-export default class Processor implements IInspectorView {
+export default class Processor implements IProcessingView {
 	private _canvas: HTMLCanvasElement;
 	get canvas() { return this._canvas };
 
@@ -11,38 +13,52 @@ export default class Processor implements IInspectorView {
 	get stream() { return this._canvas.captureStream(30) }
 
 	private _sources: Source[];
+	_size: { width: number, height: number };
 
 	constructor(
-		@IInspectorService private readonly inspectorService: IInspectorService
+		@IProcessingService private readonly processorService: IProcessingService
 	) {
 		this._canvas = $('canvas') as HTMLCanvasElement;
 		this._ctx = this._canvas.getContext('2d');
+		this._sources = [];
+		this._size = processorService.size;
 
-		inspectorService.registerView(this);
+		processorService.registerView(this);
+		this._canvas.addEventListener(EventType.CLICK, this.onDidSelect);
+	}
+
+	public setSize(width: number, height: number) {
+		this._size = { width, height }
+	}
+
+	onDidSelect = (e) => {
+		EventHelper.stop(e);
+		const canvasRect = this._canvas.getBoundingClientRect();
+		const pos = new Point((e.clientX - canvasRect.x) / canvasRect.width, (e.clientY - canvasRect.y) / canvasRect.height);
+		let source: Source = null;
+		for (let i = 0; i < this._sources.length; i++) {
+			source = this._sources[i];
+			if (pos.isInside(source.rect))
+				break;
+		}
 	}
 
 	refresh(items: source[]) {
 		this._sources = items;
 	}
 
-	public process() {
-		this._canvas.width = this._canvas.clientWidth;
-		this._canvas.height = this._canvas.clientHeight;
+	sizeDidChange(size) {
+		this._size = size;
+	}
 
-		this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
-		let i = 0;
-		if (this._sources) {
-			this._sources.forEach(source => {
-				const ratio = (this._canvas.width * 0.5) / source.width;
-				this._ctx.drawImage(
-					source.graphics,
-					i * (this._canvas.width * 0.5),
-					0,
-					source.width * ratio,
-					source.height * ratio
-				);
-				i++;
-			})
+	public process() {
+		this._canvas.width = this._size.width;
+		this._canvas.height = this._size.height;
+		this.canvas.style.height = `${this._size.height / this._size.width * this.canvas.clientWidth}px`;
+
+		this._ctx.clearRect(0, 0, this._size.width, this._size.height);
+		for (let i = 0; i < this._sources.length; i++) {
+			this._sources[i].drawIn(this._canvas, this._ctx);
 		}
 	}
 }
