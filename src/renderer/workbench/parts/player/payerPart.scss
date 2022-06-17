@@ -7,6 +7,7 @@
 	& .viewport {
 		flex: 1;
 		display: flex;
+		position: relative;
 
 		& > * {
 			width: 50%;
@@ -16,8 +17,15 @@
 
 		}
 
-		& canvas {
+		& .renderer {
 			background-color: black;
+		}
+
+		& .overlay {
+			pointer-events: none;
+			position: absolute;
+			left: 0;
+			top: 0;
 		}
 	}
 }

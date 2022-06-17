@@ -68,4 +68,10 @@ export default class InspectorPart extends Part implements IProcessingView {
 	sizeDidChange(size) {
 
 	}
+
+	onDidSelect(selected: Source) {
+		if (selected == null) return;
+
+		console.log(selected.name);
+	}
 }
